@@ -1,13 +1,14 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from './pages/HomePage';
+import { GaragePage } from './pages/GaragePage';
 
 test('guest can add Audi TT to Garage', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Guest log in' }).click();
-  await page.getByRole('button', { name: 'Add car' }).click();
-  await page.getByLabel('Brand').selectOption({ label: 'Audi' });
-  await page.getByLabel('Model').selectOption({ label: 'TT' });
-  await page.getByRole('spinbutton', { name: 'Mileage' }).fill('12000');
-  await page.getByRole('button', { name: 'Add' }).click();
+  const homePage = new HomePage(page);
+  const garagePage = new GaragePage(page);
 
-  await expect(page.getByText('Audi TT')).toBeVisible();
+  await homePage.open();
+  await homePage.loginAsGuest();
+  await garagePage.addCar('Audi', 'TT', '12000');
+
+  await expect(garagePage.car('Audi TT')).toBeVisible();
 });

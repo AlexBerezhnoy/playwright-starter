@@ -1,8 +1,13 @@
 import { test, expect } from '@playwright/test';
+import { HomePage } from './pages/HomePage';
+import { GaragePage } from './pages/GaragePage';
 
 test('guest can open Garage', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: /guest log in/i }).click();
+  const homePage = new HomePage(page);
+  const garagePage = new GaragePage(page);
+
+  await homePage.open();
+  await homePage.loginAsGuest();
   await expect(page).toHaveURL(/panel\/garage/);
-  await expect(page.getByRole('heading', { name: /garage/i })).toBeVisible();
+  await expect(garagePage.heading).toBeVisible();
 });
