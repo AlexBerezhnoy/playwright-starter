@@ -4,7 +4,8 @@
   "scripts": {
     "preflight": "node scripts/preflight.mjs",
     "test": "playwright test",
-    "test:guest": "playwright test tests/guest-garage.spec.ts --project=chromium",
+    "test:guest": "playwright test tests/guest-garage.spec.ts --project=chromium --headed",
+    "test:add-car": "playwright test tests/add-car.spec.ts --project=chromium --headed",
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "report": "playwright show-report",

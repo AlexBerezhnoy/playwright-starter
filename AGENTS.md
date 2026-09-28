@@ -46,3 +46,7 @@
 Якщо команда `npx --no-install playwright cli --version` недоступна або preflight показує
 `Playwright CLI config ready: false`, поверніть `CLI SETUP BLOCKER` і точну
 інструкцію підготовки.
+
+## Генерація тестів. 
+- Перевіряти потрібно тільки те що явно вказано. 
+- Не додавай самостійно перевірки
